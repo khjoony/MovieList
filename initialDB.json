@@ -1,0 +1,23 @@
+[
+    {
+        "movieId":0,
+        "title":"Avata",
+        "director":"James Cameron",
+        "year":2008,
+        "reviews":[]
+    },
+    {
+        "movieId":1,
+        "title":"Starwars1",
+        "director":"Jogie Lukaz",
+        "year":1997,
+        "reviews":[]
+    },
+    {
+        "movieId":2,
+        "title":"Interstella",
+        "director":"Christoper Nolan",
+        "year":2014,
+        "reviews":[]
+    }
+]
