@@ -22,12 +22,20 @@ app.get('/', function(req, res) {
     res.end('Welcome to Movies app');
 });
 
-function addReview(req, res) {
+app.use(handleError);
+
+function handleError(err, req, res, next) {
+    console.log('Error : ', err);
+    res.status(err.code).send({msg:err.message});
+}
+
+function addReview(req, res, next) {
     var movieId = req.params.movieId;
     var movie = findMovie(movieId);
     if( ! movie ) {
-        res.status(404).send({msg:'Not Found'});
-        return;
+        var error = new Error('Not Found');
+        error.code = 404;
+        return next(error);
     }
 
     var review = req.body.review;
@@ -44,13 +52,14 @@ function findMovie(movieId) {
     }
     return null;
 }
-function showMovieDetail(req, res) {
+function showMovieDetail(req, res, next) {
     var movieId = req.params.movieId;
     var movie = findMovie(movieId);
 
     if( ! movie ) {
-        res.status(404).send({msg:'Not Found'});
-        return;
+        var error = new Error('Not Found');
+        error.code = 404;
+        return next(error);
     }
 
     res.send(movie);
