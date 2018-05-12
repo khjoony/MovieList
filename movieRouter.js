@@ -20,7 +20,8 @@ function addReview(req, res, next) {
 
     var review = req.body.review;
     movie.reviews.push(review);
-    res.send({msg:'success'});
+    //res.send({msg:'success'});
+    res.redirect('/movies/' + movieId);
 }
 
 function findMovie(movieId) {
@@ -42,7 +43,8 @@ function showMovieDetail(req, res, next) {
         return next(error);
     }
 
-    res.send(movie);
+    //res.send(movie);
+    res.render('movieDetail', {movie:movie});
 }
 function showMovieList(req, res) {
     var data = [];
@@ -57,7 +59,8 @@ function showMovieList(req, res) {
         count : data.length,
         data  : data
     };
-    res.send(result);
+    //res.send(result);
+    res.render('movieList', result);
 }
 
 
